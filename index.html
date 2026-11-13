@@ -333,7 +333,7 @@ button.done,.head-btn.done{color:var(--on)}
 /* command-palette results */
 .results>.seed-list{gap:4px;padding:12px 14px 18px}
 .seed{border-radius:12px;background:none;box-shadow:none;transition:background .3s}.seed:hover{background:color-mix(in srgb,var(--violet) 9%,transparent)}
-.seed:first-child{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 22%,transparent),color-mix(in srgb,var(--violet) 5%,transparent))}
+
 .seed-num{font:600 16px "Geist Mono",monospace;box-shadow:var(--ins);border-radius:10px}
 .seed-list::-webkit-scrollbar-thumb{background:rgb(255 255 255/.15)}
 .id,.thumb-n,.chip,.lab-badge{font-family:"Geist Mono",ui-monospace,monospace}
@@ -382,6 +382,54 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
 #view-scanner .results>.empty{flex:1 1 0;min-height:0}
 #view-scanner .results .panel-head{flex-wrap:wrap;row-gap:12px}
 @media(max-width:1060px){#view-scanner .results>.seed-list{flex:none;height:auto;min-height:260px;max-height:640px}#view-scanner .results>.empty{flex:none;min-height:280px}}
+.lab-badge.b-H{color:var(--yellow);font-size:10px;letter-spacing:.04em}/* label-tinted result rows */
+.seed.lab-A{background:linear-gradient(90deg,color-mix(in srgb,var(--ok) 20%,transparent),color-mix(in srgb,var(--ok) 6%,transparent))}
+.seed.lab-A:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--ok) 28%,transparent),color-mix(in srgb,var(--ok) 10%,transparent))}
+.seed.lab-S{background:linear-gradient(90deg,color-mix(in srgb,var(--warn) 20%,transparent),color-mix(in srgb,var(--warn) 6%,transparent))}
+.seed.lab-S:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--warn) 28%,transparent),color-mix(in srgb,var(--warn) 10%,transparent))}
+.seed.lab-D{background:linear-gradient(90deg,color-mix(in srgb,var(--bad) 20%,transparent),color-mix(in srgb,var(--bad) 6%,transparent))}
+.seed.lab-D:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--bad) 28%,transparent),color-mix(in srgb,var(--bad) 10%,transparent))}
+/* faster aurora (about 2.5x) */
+.aurora i,.aurora b{animation-duration:calc(var(--d)*.4)}
+/* label colors follow the palette: A=Main, S=Highlight, D=Extra */
+.seed.lab-A{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 22%,transparent),color-mix(in srgb,var(--red) 7%,transparent))}
+.seed.lab-A:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 30%,transparent),color-mix(in srgb,var(--red) 11%,transparent))}
+.seed.lab-A .seed-num,.seed.lab-A .lab-badge:not(.b-X):not(.b-H){color:var(--red)}
+.ch.cA{color:var(--red)}.hi.l-A .hi-t{color:var(--red)}
+.seed.lab-S{background:linear-gradient(90deg,color-mix(in srgb,var(--yellow) 22%,transparent),color-mix(in srgb,var(--yellow) 7%,transparent))}
+.seed.lab-S:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--yellow) 30%,transparent),color-mix(in srgb,var(--yellow) 11%,transparent))}
+.seed.lab-S .seed-num,.seed.lab-S .lab-badge:not(.b-X):not(.b-H){color:var(--yellow)}
+.ch.cS{color:var(--yellow)}.hi.l-S .hi-t{color:var(--yellow)}
+.seed.lab-D{background:linear-gradient(90deg,color-mix(in srgb,var(--violet) 22%,transparent),color-mix(in srgb,var(--violet) 7%,transparent))}
+.seed.lab-D:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--violet) 30%,transparent),color-mix(in srgb,var(--violet) 11%,transparent))}
+.seed.lab-D .seed-num,.seed.lab-D .lab-badge:not(.b-X):not(.b-H){color:var(--violet)}
+.ch.cD{color:var(--violet)}.hi.l-D .hi-t{color:var(--violet)}
+
+/* history: select mode, filters, collapsed duplicates */
+.hist-filters{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:8px}
+.hf{padding:6px 14px;border-radius:999px;font-size:12px}.hf[aria-pressed=true]{color:var(--red);box-shadow:var(--in);background:color-mix(in srgb,var(--red) 14%,transparent);transform:none}
+.head-btn#histSel.on{color:var(--red)}
+.hist-bar{display:flex;align-items:center;gap:10px;margin:10px 24px 0;padding:10px 14px;border-radius:14px;box-shadow:var(--ins)}
+.hist-bar span{flex:1;font-size:12px;color:var(--mut)}.hist-bar .head-btn{padding:6px 12px}
+.hist-bar .warn::after{display:none}.hist-bar .warn{color:var(--bad)}
+.hb-sel{display:none;flex:none;align-self:center;margin:0 0 0 14px;width:22px;height:22px;border-radius:7px;appearance:none;-webkit-appearance:none;background:var(--bg);box-shadow:var(--in);cursor:pointer;transition:background .3s}
+.hist-list.selmode .hb-sel{display:block}.hb-sel:checked{background:var(--red);box-shadow:var(--xs)}
+.hb-sel:checked::after{content:"";display:block;width:6px;height:11px;margin:3px 0 0 7px;border:solid var(--on);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.hist-list.selmode .hb-n{margin-left:10px}.hb.sel{background:color-mix(in srgb,var(--red) 9%,transparent)}
+.hi.dup{margin-left:18px;opacity:.85;box-shadow:inset 2px 0 0 rgb(255 255 255/.12)}
+.hi-dup{grid-column:1;grid-row:3;justify-self:start;margin-top:4px;padding:4px 0;background:none;box-shadow:none;color:var(--red);font-size:12px;gap:8px}.hi-dup:hover{box-shadow:none;transform:none}
+.hi-dup .dd{border:5px solid transparent;border-top:6px solid currentColor;border-bottom:0;transition:transform .3s}.hi-dup[aria-expanded=true] .dd{transform:rotate(180deg)}
+.hi-l{grid-row:1/4}
+
+/* entrance animations: hero text on load and on every tab switch (the view re-appears, so these replay) */
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}}
+@keyframes lift{from{opacity:0;transform:translateY(18px)}}
+.hero h1 .ln,.hero-note{animation:rise .9s cubic-bezier(.2,.7,.2,1) backwards}
+.hero h1 .ln:nth-child(1){animation-delay:.05s}.hero h1 .ln:nth-child(2){animation-delay:.18s}
+.hero-note{animation-delay:.34s}
+.view>:not(.hero):not(.grid){animation:lift .75s cubic-bezier(.2,.7,.2,1) .42s backwards}
+.view>.grid>.panel{animation:lift .75s cubic-bezier(.2,.7,.2,1) .42s backwards}.view>.grid>.panel:nth-child(2){animation-delay:.56s}
+.meta{animation:lift .7s cubic-bezier(.2,.7,.2,1) backwards}
 </style>
 </head>
 <body>
@@ -651,12 +699,15 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
   <div class="hist-head">
     <h2>History</h2>
     <button type="button" class="head-btn" id="histImport"><span class="label">Import</span></button>
+    <button type="button" class="head-btn" id="histSel"><span class="label">Select</span></button>
     <button type="button" class="head-btn" id="histExport"><span class="label">Export</span></button>
     <button type="button" class="head-btn" id="histClose" aria-label="Close history"><span class="label">Close</span></button>
     <input type="search" class="hist-search" id="histQ" placeholder="Search title, ID, label (e.g. D2) or disputed" aria-label="Search history">
+    <div class="hist-filters" id="histFilters" role="group" aria-label="Filter by label"><button type="button" class="hf" data-f="all" aria-pressed="true">All</button><button type="button" class="hf" data-f="A" aria-pressed="false">A</button><button type="button" class="hf" data-f="S" aria-pressed="false">S</button><button type="button" class="hf" data-f="D" aria-pressed="false">D</button><button type="button" class="hf" data-f="U" aria-pressed="false">Unlabeled</button><button type="button" class="hf" data-f="X" aria-pressed="false">Disputed</button></div>
     <input type="file" id="histFile" accept=".json,application/json">
   </div>
   <div class="hist-msg" id="histMsg" role="status" hidden></div>
+  <div class="hist-bar" id="histBar" hidden><span id="histCount">None selected</span><button type="button" class="head-btn" id="selAll">Select all</button><button type="button" class="head-btn" id="selExport" disabled>Export</button><button type="button" class="head-btn warn" id="selDel" disabled>Delete</button></div>
   <div class="hist-list" id="histList"></div>
 </aside>
 <aside class="notes" id="notes" aria-label="Notepad">
@@ -879,10 +930,19 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
   // ---------- extraction ----------
   const IMG_KEY = /(img|image|pic|photo|thumb)/i;
   const IMG_EXT = /\.(jpe?g|png|gif|webp|avif|bmp|svg)(\?|#|$)/i;
+  // The client platform's image links need a login; the same file is public on img.kwcdn.com.
+  // Keep the path up to and including the image extension, drop the signed query string.
+  const CLIENT_IMG = /^https?:\/\/outsourcing\.logisticsmngmt\.com(\/[^?#]*?\.(?:jpe?g|png|gif|webp|avif|bmp|svg))(?:[?#]|$)/i;
+  const CLIENT_ANY = /^https?:\/\/outsourcing\.logisticsmngmt\.com(\/[^?#]*)/i;
+  function fixImg(u) {
+    if (typeof u !== 'string') return u;
+    const m = u.match(CLIENT_IMG) || u.match(CLIENT_ANY);
+    return m ? 'https://img.kwcdn.com' + m[1] : u;
+  }
   function normUrl(s) {
     s = s.trim();
-    if (s.startsWith('//')) return 'https:' + s;
-    return /^(https?:\/\/|data:image\/)/i.test(s) ? s : null;
+    if (s.startsWith('//')) s = 'https:' + s;
+    return /^(https?:\/\/|data:image\/)/i.test(s) ? fixImg(s) : null;
   }
   // Walk an object and gather image URLs (keys that look like image fields, or URLs that end in an image extension)
   function collectImages(root) {
@@ -1165,13 +1225,14 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
       showNotice(`Nothing could be read \u2014 ${plural(failed.length, 'input')} failed (${names}). See the error under each box.`);
       return;
     }
+    const preN = prelabel(all);   // reuse labels already saved in History
     markDups(all);   // group across inputs too, so repeats split by pagination still merge
     render(total, all, active.length > 1);
     const uniq = all.filter(x => !x.isDup).length, dupN = all.length - uniq;
     const dupTxt = dupN ? ` ${plural(dupN, 'repeated duplicate')} hidden.` : '';
     const where = active.length > 1 ? ` across ${plural(ok, 'input')}` : '';
     const skip = skipped ? ` ${plural(skipped, 'empty box').replace('boxs', 'boxes')} ignored.` : '';
-    const lk = '';
+    const lk = preN ? ` ${plural(preN, 'seed')} pre-labeled from history.` : '';
     if (failed.length) showNotice(`Scanned ${ok} of ${active.length} inputs \u2014 ${plural(uniq, 'seed')} kept.${dupTxt} Failed: ${names}. See the error under each box.${skip}`, 'error');
     else showNotice(`Scan complete \u2014 ${plural(uniq, 'seed')} found${where}.${dupTxt}${skip}${lk}`, 'success');
   }
@@ -1212,7 +1273,7 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
   const SUBS = [['D1', 'Category not same'], ['D2', 'Appearance not same'], ['D3', 'Weight not same'], ['D4', 'Brand not same'], ['D5', 'Size not same'],
     ['D6', 'Material not same'], ['D7', 'Quantity not same'], ['D8', 'Set content not same'], ['D9', 'Inconsistent function'], ['D0', 'Others']];
   const LN = {}; [...OPTS, ...SUBS].forEach(([c, n]) => LN[c] = n);
-  const badgeHtml = s => (s.lab ? `<span class="lab-badge">${s.lab}</span>` : '') + (s.disp ? '<span class="lab-badge b-X">DISPUTED</span>' : '');
+  const badgeHtml = s => (s.lab ? `<span class="lab-badge">${s.lab}</span>` : '') + (s.disp ? '<span class="lab-badge b-X">DISPUTED</span>' : '') + (s.fromHist ? '<span class="lab-badge b-H" title="Pre-labeled from your history">FROM HISTORY</span>' : '');
   const labDlg = $('labDlg'), labMain = $('labMain'), labSub = $('labSub'), labDisp = $('labDisp');
   let labObj = null, labCb = null, labTimer = 0, labClosing = false;
   const optBtn = (c, n, key, cls, on) => `<button type="button" class="ld-opt ${cls}${on ? ' on' : ''}" data-set="${c}" aria-pressed="${on}"><kbd>${key}</kbd><span>${n}</span></button>`;
@@ -1225,6 +1286,7 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
   }
   function applyCard(i) {
     const s = seeds[i], art = seedList.querySelector(`[data-label="${i}"]`).closest('.seed');
+    s.fromHist = false;   // the person edited it, so it's no longer a straight copy
     art.className = art.className.replace(/\blab-\S+/g, '').trim() + (s.lab ? ' lab-' + s.lab[0] : '');
     art.querySelector('.lab-badges').innerHTML = badgeHtml(s);
     persist();
@@ -1283,7 +1345,7 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
     try {
       const d = JSON.parse(localStorage.getItem(SK));
       if (!d || !Array.isArray(d.seeds) || !d.seeds.length) return;
-      const list = d.seeds.map(s => ({ ...s, images: Array.isArray(s.images) ? s.images : [], bad: new Set() }));
+      const list = d.seeds.map(s => ({ ...s, images: Array.isArray(s.images) ? s.images.map(fixImg) : [], bad: new Set() }));
       render(+d.total || list.length, list, !!d.multi);
       showNotice(`Restored your last scan \u2014 ${plural(list.filter(s => !s.isDup).length, 'item')}.`, 'success');
     } catch (e) {}
@@ -1297,32 +1359,71 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
   const setH = (m, err) => { histMsg.textContent = m; histMsg.hidden = !m; histMsg.classList.toggle('err', !!err); };
   const saveH = () => { try { localStorage.setItem(HK, JSON.stringify(hist)); return true; } catch (e) { setH('Could not save \u2014 browser storage is full or blocked. Export your history to keep a copy.', true); return false; } };
   const hay = x => [x.title, x.id, x.lab, LN[x.lab] || '', x.disp ? 'disputed' : '', x.dup ? 'duplicate' : ''].join(' ').toLowerCase();
+  // Copy labels from History onto freshly scanned seeds with the same product title (Data IDs change between batches).
+  // Titles are compared ignoring case and extra spaces; the newest labeled history entry wins.
+  const titleKey = t => { const k = String(t ?? '').trim().replace(/\s+/g, ' ').toLowerCase(); return !k || k === '(no product title found)' ? null : k; };
+  function prelabel(list) {
+    const m = new Map();
+    for (const b of hist) for (const x of b.items) { const k = titleKey(x.title); if (k && !m.has(k) && (x.lab || x.disp)) m.set(k, x); }
+    const seen = new Set();
+    list.forEach(s => {
+      const k = titleKey(s.productTitle), x = k && m.get(k);
+      if (!x) return;
+      s.lab = x.lab || ''; s.disp = !!x.disp; s.fromHist = true; seen.add(k);
+    });
+    return seen.size;
+  }
   const chips = b => {
-    const c = {}; let dn = 0;
-    b.items.forEach(x => { if (x.lab) c[x.lab[0]] = (c[x.lab[0]] || 0) + 1; if (x.disp) dn++; });
-    return `<i class="ch">${plural(b.items.length, 'item')}</i>` + ['A', 'S', 'D'].filter(k => c[k]).map(k => `<i class="ch c${k}">${k} ${c[k]}</i>`).join('') + (dn ? `<i class="ch cX">${dn} disputed</i>` : '');
+    const c = {}; let dn = 0, u = 0, du = 0;
+    b.items.forEach(x => { if (x.dup) { du++; return; } u++; if (x.lab) c[x.lab[0]] = (c[x.lab[0]] || 0) + 1; if (x.disp) dn++; });
+    return `<i class="ch">${plural(u, 'item')}</i>` + (du ? `<i class="ch">+${du} dup</i>` : '') + ['A', 'S', 'D'].filter(k => c[k]).map(k => `<i class="ch c${k}">${k} ${c[k]}</i>`).join('') + (dn ? `<i class="ch cX">${dn} disputed</i>` : '');
   };
   const histLab = x => x.lab || x.disp ? badgeHtml(x) + (x.lab ? `<span>${LN[x.lab]}</span>` : '') : '<span class="hi-none">Unlabeled</span>';
+  let selMode = false, hf = 'all'; const sel = new Set();
+  const hfOk = x => hf === 'all' || (hf === 'U' ? !x.lab && !x.disp : hf === 'X' ? !!x.disp : !!x.lab && x.lab[0] === hf);
+  // a saved "duplicate" belongs to the lead item just before it
+  const groupsOf = items => { const g = []; items.forEach((x, xi) => { if (x.dup && g.length) g[g.length - 1].d.push([x, xi]); else g.push({ l: [x, xi], d: [] }); }); return g; };
+  const hiRow = (bi, x, xi, attrs, tog) => `<div class="hi${x.lab ? ' l-' + x.lab[0] : ''}${x.dup ? ' dup' : ''}"${attrs}><div class="hi-t">${escapeHtml(x.title)}</div><div class="hi-id">ID ${escapeHtml(x.id)}${x.dup ? ' \u00b7 duplicate' : ''}</div>${tog}
+          <div class="hi-l"><span class="hi-lab">${histLab(x)}</span><button type="button" class="hi-edit" data-b="${bi}" data-x="${xi}" data-edit aria-label="Edit label" title="Edit label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></button></div></div>`;
+  function updBar() {
+    for (const id of [...sel]) if (!hist.some(b => b.id === id)) sel.delete(id);
+    const n = sel.size, vis = [...histList.querySelectorAll('[data-sel]')];
+    $('histCount').textContent = n ? n + ' selected' : 'None selected';
+    $('selExport').disabled = $('selDel').disabled = !n;
+    $('selAll').textContent = vis.length && vis.every(c => c.checked) ? 'Select none' : 'Select all';
+  }
   function renderHist() {
-    const q = histQ.value.trim().toLowerCase();
+    const q = histQ.value.trim().toLowerCase(), act = !!q || hf !== 'all', hit = x => hfOk(x) && (!q || hay(x).includes(q));
     const html = hist.map((b, bi) => {
-      const rows = b.items.map((x, xi) => [x, xi]).filter(([x]) => !q || hay(x).includes(q));
-      if (!rows.length) return '';
-      return `<details class="hb"${q ? ' open' : ''}><summary><span class="hb-n">${pad(hist.length - bi)}</span><span class="hb-m"><b>${escapeHtml(new Date(b.t).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }))}</b><span class="hb-c">${chips(b)}</span></span></summary>
-        ${rows.map(([x, xi]) => `<div class="hi${x.lab ? ' l-' + x.lab[0] : ''}"><div class="hi-t">${escapeHtml(x.title)}</div><div class="hi-id">ID ${escapeHtml(x.id)}${x.dup ? ' \u00b7 duplicate' : ''}</div>
-          <div class="hi-l"><span class="hi-lab">${histLab(x)}</span><button type="button" class="hi-edit" data-b="${bi}" data-x="${xi}" data-edit aria-label="Edit label" title="Edit label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></button></div></div>`).join('')}
+      const gs = groupsOf(b.items).filter(g => hit(g.l[0]) || g.d.some(([x]) => hit(x)));
+      if (!gs.length) return '';
+      const body = gs.map(g => {
+        const [lx, li] = g.l, key = bi + '-' + li, op = act && g.d.some(([x]) => hit(x));
+        const tog = g.d.length ? `<button type="button" class="hi-dup" data-dupt="${key}" aria-expanded="${op}"><span>${plural(g.d.length, 'duplicate')}</span><i class="dd" aria-hidden="true"></i></button>` : '';
+        return hiRow(bi, lx, li, '', tog) + g.d.map(([x, xi]) => hiRow(bi, x, xi, ` data-g="${key}"${op ? '' : ' hidden'}`, '')).join('');
+      }).join('');
+      return `<details class="hb${sel.has(b.id) ? ' sel' : ''}"${act ? ' open' : ''}><summary><input type="checkbox" class="hb-sel" data-sel="${b.id}" aria-label="Select batch"${sel.has(b.id) ? ' checked' : ''}><span class="hb-n">${pad(hist.length - bi)}</span><span class="hb-m"><b>${escapeHtml(new Date(b.t).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }))}</b><span class="hb-c">${chips(b)}</span></span></summary>
+        ${body}
         <button type="button" class="hb-del" data-del="${bi}">Delete batch</button></details>`;
     }).join('');
-    histList.innerHTML = html || `<div class="hist-empty">${hist.length ? 'No items match your search.' : 'Nothing saved yet. Label some items, then press Save.'}</div>`;
+    histList.innerHTML = html || `<div class="hist-empty">${hist.length ? 'No items match your search or filter.' : 'Nothing saved yet. Label some items, then press Save.'}</div>`;
+    updBar();
   }
   histList.addEventListener('click', e => {
+    const t = e.target.closest('[data-dupt]');
+    if (t) {
+      const on = t.getAttribute('aria-expanded') !== 'true';
+      t.setAttribute('aria-expanded', String(on));
+      t.closest('details').querySelectorAll(`[data-g="${t.dataset.dupt}"]`).forEach(r => { r.hidden = !on; });
+      return;
+    }
     const ed = e.target.closest('[data-edit]');
     if (ed) {
       const b = hist[ed.dataset.b], x = b && b.items[ed.dataset.x];
       if (!x) return;
       const row = ed.closest('.hi'), box = ed.closest('.hb');
       openLab(x, pad(+ed.dataset.x + 1), x.title, () => {
-        row.className = 'hi' + (x.lab ? ' l-' + x.lab[0] : '');
+        row.className = 'hi' + (x.lab ? ' l-' + x.lab[0] : '') + (x.dup ? ' dup' : '');
         row.querySelector('.hi-lab').innerHTML = histLab(x);
         box.querySelector('.hb-c').innerHTML = chips(b);
         saveH();
@@ -1333,7 +1434,44 @@ box-shadow:0 0 0 1px rgb(255 255 255/.1),inset 0 1px 0 rgb(255 255 255/.14),0 18
     if (!d || !confirm('Delete this saved batch? This can\u2019t be undone.')) return;
     hist.splice(+d.dataset.del, 1); saveH(); renderHist();
   });
+  histList.addEventListener('change', e => {
+    const c = e.target.closest('[data-sel]');
+    if (!c) return;
+    const id = Number(c.dataset.sel);
+    if (c.checked) sel.add(id); else sel.delete(id);
+    c.closest('.hb').classList.toggle('sel', c.checked); updBar();
+  });
   histQ.addEventListener('input', renderHist);
+  $('histFilters').addEventListener('click', e => {
+    const b = e.target.closest('[data-f]'); if (!b) return;
+    hf = b.dataset.f;
+    $('histFilters').querySelectorAll('[data-f]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderHist();
+  });
+  const setSel = (c, on) => { c.checked = on; const id = Number(c.dataset.sel); if (on) sel.add(id); else sel.delete(id); c.closest('.hb').classList.toggle('sel', on); };
+  $('histSel').addEventListener('click', () => {
+    selMode = !selMode;
+    if (!selMode) histList.querySelectorAll('[data-sel]').forEach(c => setSel(c, false));
+    histList.classList.toggle('selmode', selMode); $('histBar').hidden = !selMode;
+    $('histSel').querySelector('.label').textContent = selMode ? 'Done' : 'Select';
+    updBar();
+  });
+  $('selAll').addEventListener('click', () => {
+    const vis = [...histList.querySelectorAll('[data-sel]')], all = vis.every(c => c.checked);
+    vis.forEach(c => setSel(c, !all)); updBar();
+  });
+  const dlHist = arr => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify({ app: 'item-check', v: 1, batches: arr }, null, 2)], { type: 'application/json' }));
+    a.download = 'item-check-history-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  $('selExport').addEventListener('click', () => { const arr = hist.filter(b => sel.has(b.id)); if (!arr.length) return; dlHist(arr); setH(`Exported ${plural(arr.length, 'batch')}.`); });
+  $('selDel').addEventListener('click', () => {
+    const n = sel.size;
+    if (!n || !confirm(`Delete ${plural(n, 'saved batch')}? This can\u2019t be undone.`)) return;
+    hist = hist.filter(b => !sel.has(b.id)); sel.clear(); saveH(); renderHist(); setH(`Deleted ${plural(n, 'batch')}.`);
+  });
   saveHistBtn.addEventListener('click', () => {
     if (!seeds.length) return;
     if (Date.now() < saveUntil) { showNotice('Already saved \u2014 wait a few seconds before saving again.'); return; }
